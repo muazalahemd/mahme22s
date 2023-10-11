@@ -10,7 +10,49 @@ class GermanTranslatorTest {
     @Test
     void aPositiveTest() {
         GermanTranslator translator = new GermanTranslator();
-        String value = translator.translateNumber(0);
-        assertEquals(value, "null");
+        String value = translator.translateNumber(1);
+
+        assertEquals(value, "eins");
+
+        value = translator.translateNumber(5);
+
+        assertEquals(value, "fuenf");
+
+        value = translator.translateNumber(10);
+
+        assertEquals(value, "zehn");
     }
+
+
+    @Test
+    void aNegativerTest() {
+        int number = -1;
+        GermanTranslator translator = new GermanTranslator();
+        String n =( "Übersetzung der Zahl "+ number +" nicht möglich (Versionsnummer des " +
+                "Translators: " + translator.version +") ");
+
+        String value = translator.translateNumber(number);
+        n =( "Übersetzung der Zahl "+ number +" nicht möglich (Versionsnummer des " +
+                "Translators: " + translator.version +") ");
+        assertEquals(value, n);
+
+        number = 11;
+        value = translator.translateNumber(number);
+        n =( "Übersetzung der Zahl "+ number +" nicht möglich (Versionsnummer des " +
+                "Translators: " + translator.version +") ");
+        assertEquals(value, n);
+
+
+    }
+    @Test
+    void aGrenzwertTest(){
+        String n ="";
+        int number = 0;
+        GermanTranslator translator = new GermanTranslator();
+        String value = translator.translateNumber(number);
+        n =( "Übersetzung der Zahl "+ number +" nicht möglich (Versionsnummer des " +
+                "Translators: " + translator.version +") ");
+
+        assertEquals(value, n);
+        }
 }

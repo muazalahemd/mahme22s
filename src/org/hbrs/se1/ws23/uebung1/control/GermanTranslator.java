@@ -9,8 +9,16 @@ public class GermanTranslator implements Translator {
 	 */
 	public String translateNumber( int number ) {
 		// [ihr Source Code aus Übung 1-2]
-
-		return "null";
+		String text = "";
+		String [] list = {"eins","zwei","drei","vier","fuenf","sechs","sieben",
+		"acht","neun","zehn"};
+		try{
+			return list[number -1];
+		} catch (ArrayIndexOutOfBoundsException e){
+			text = ( "Übersetzung der Zahl "+ number +" nicht möglich (Versionsnummer des " +
+					"Translators: " + this.version +") ");
+		}
+		return text;
 	}
 
 	/**
