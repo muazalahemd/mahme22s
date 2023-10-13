@@ -1,6 +1,7 @@
 package org.hbrs.se1.ws23.uebung1.test;
 
 import org.hbrs.se1.ws23.uebung1.control.GermanTranslator;
+import org.hbrs.se1.ws23.uebung1.view.Client;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,19 +27,19 @@ class GermanTranslatorTest {
 
     @Test
     void aNegativerTest() {
-        int number = -1;
         GermanTranslator translator = new GermanTranslator();
+
+        int number = -1;
         String n =( "Übersetzung der Zahl "+ number +" nicht möglich (Versionsnummer des " +
                 "Translators: " + translator.version +") ");
 
         String value = translator.translateNumber(number);
-        n =( "Übersetzung der Zahl "+ number +" nicht möglich (Versionsnummer des " +
-                "Translators: " + translator.version +") ");
         assertEquals(value, n);
+
 
         number = 11;
         value = translator.translateNumber(number);
-        n =( "Übersetzung der Zahl "+ number +" nicht möglich (Versionsnummer des " +
+        n = ( "Übersetzung der Zahl "+ number +" nicht möglich (Versionsnummer des " +
                 "Translators: " + translator.version +") ");
         assertEquals(value, n);
 
