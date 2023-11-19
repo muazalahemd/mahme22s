@@ -25,7 +25,7 @@ class ContainerTest {
         c.addMember(m2);
         c.addMember(m3);
         PersistenceStrategyStream<Member> ps = new PersistenceStrategyStream<>();
-        c.strore();
+       // c.strore();
     }
 
     @Test

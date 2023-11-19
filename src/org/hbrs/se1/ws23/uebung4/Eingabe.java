@@ -13,15 +13,18 @@ public class Eingabe {
     private static PSStream ps = new PSStream();
 
     private static void Usereingabe() throws ContainerException {
-        System.out.println("Geben Sie ID der Userstory");;
+        System.out.println("Geben Sie ID der Userstory");
             Integer id = sc.nextInt();
 
             //Überprüfen ob die ID exsistiert?
-        System.out.println("Geben Sie eine Beschreibung an");
-        String b = sc.next();
+             System.out.println("Geben Sie eine Beschreibung an");
+            String b = sc.next();
 
-        System.out.println("Geben Sie eine Akzeptanzkriterium an");
-        String ak = sc.next();
+            System.out.println("Geben Sie eine Akzeptanzkriterium an");
+            String ak = sc.next();
+
+            System.out.println("Geben Sie ein Projekt an");
+            String ppp = sc.next();
 
             // Eingabe der Kennzahlen zur Berechnung
             System.out.println("Geben Sie folgende Zahlen an");
@@ -43,7 +46,7 @@ public class Eingabe {
             System.out.println("Strafe");
             Integer strafe = sc.nextInt();
 
-            c.addUserStory(new UserStory(id,b,ak,mehrwert,strafe,aufwand,risk));
+            c.addUserStory(new UserStory(id,b,ak,ppp,mehrwert,strafe,aufwand,risk));
             //sc.close();
     }
     public static void start() throws ContainerException, PersistenceException, Exception {
@@ -87,7 +90,7 @@ public class Eingabe {
             }
             if(strings[0].equals("load")){
                 try{
-                List<UserStory> k = ps.load();
+                List<UserStory> k = ps.laden();
                 ps.close();
                 c.setListe(k);
                 } catch (Exception e) {

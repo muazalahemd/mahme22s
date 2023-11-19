@@ -1,8 +1,9 @@
 package org.hbrs.se1.ws23.uebung4;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Utilties {
 
@@ -17,11 +18,9 @@ public class Utilties {
 
     //Suche nach vorhandenen Titels!
     public static List<UserStory> projektSearch(List<UserStory> l, String n) {
-        List<UserStory> o = new ArrayList<>();
-        for (UserStory e: l){
-            if(e.getProject().equals(n))
-                o.add(e);
-        }
-        return o;
+
+        return l.stream()
+                .filter((UserStory zz )-> {return zz.getProject().equals(n);})
+                .collect(Collectors.toList());
     }
 }

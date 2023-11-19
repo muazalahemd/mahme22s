@@ -6,7 +6,7 @@ import java.util.List;
 public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
 
     // URL der Datei, in der die Objekte gespeichert werden
-    private String LOCATION = "objects.ser";
+    private String LOCATION = "Users.ser";
 
     private ObjectOutputStream oos = null;
     private FileOutputStream fos = null;
@@ -66,7 +66,7 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
     public void save(List<E> list) throws PersistenceException {
         // Write the objects to stream
         try {
-            System.out.println( "LOG: Es wurden " +  list.size() + " Member-Objekte wurden erfolgreich gespeichert!");
+            System.out.println( "LOG: Es wurden " +  list.size() + " -Objekte wurden erfolgreich gespeichert!");
             oos.writeObject( list );
         }
         catch (IOException e) {
@@ -86,8 +86,7 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
     public List<E> load() throws PersistenceException {
 
         // Load the objects from stream
-        List<E> list = null;
-
+        List <E> lesen = null;
         try {
             // Create Streams here instead using "this.openConnection();"
             // Workaround!
@@ -97,19 +96,22 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
             // Auslesen der Liste
             Object obj = ois.readObject();
             if (obj instanceof List<?>) {
-                list = (List) obj;
+                lesen = (List) obj;
             }
-            System.out.println("LOG: Es wurden " + list.size() + " User Stories erfolgreich reingeladen!");
-            return list;
+            System.out.println("LOG: Es wurden " + lesen.size() + " User Stories erfolgreich reingeladen!");
+            return lesen;
         }
         catch (IOException e) {
             // Sup-Optimal, da Exeception in Form eines unlesbaren Stake-Traces ausgegeben wird
             e.printStackTrace();
+            System.out.println(e.getMessage());
+
             throw new PersistenceException( PersistenceException.ExceptionType.LoadFailure , "Fehler beim Laden der Datei!");
         }
         catch (ClassNotFoundException e) {
             // Chain of Responsbility erfuellt, durch Throw der Exceotion kann UI
             // benachrichtigt werden!
+            System.out.println(e.getMessage());
             throw new PersistenceException( PersistenceException.ExceptionType.LoadFailure , "Fehler beim Laden der Datei! Class not found!");
         }
     }
