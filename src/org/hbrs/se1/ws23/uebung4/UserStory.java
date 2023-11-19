@@ -103,7 +103,7 @@ public class UserStory implements Serializable, Comparable<UserStory> {
 
     @Override
     public int compareTo(UserStory o) {
-            return (int) (getPrio() - o.getPrio());
+            return (int) (1000*o.getPrio() - 1000*getPrio());
     }
 }
 
